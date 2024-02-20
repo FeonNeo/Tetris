@@ -9,8 +9,6 @@
 #define ROW 15+4+3
 #define COL 10
 
-bool debugbool = false;
-bool debugbool2 = false;
 bool run = true;
 bool spawn = true;
 
@@ -440,17 +438,6 @@ void enddetect()
 
 }
 
-void debug()
-{
-    for(int i=ROW; i>2; i--){
-        for(int j=0; j<COL; j++){
-            if(playfield[i][j].identity != -1 && playfield[i][j].identity != 0)
-                printw("[%d][%d]: I%d\t", i, j, playfield[i][j].identity);
-        }
-    printw("\n");
-    }
-}
-
 int main()
 {
     initscr();
@@ -475,7 +462,6 @@ int main()
         clear();
         refresh();
         visualize(nextspawnchoice);
-        debug();
         enddetect();
 
     }while(run);
