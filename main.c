@@ -70,9 +70,9 @@ void setplay()
 void visualizenextpiece(int row, int choice)
 {
     switch(row){
-        case ROW-6: printw("\tNext Piece:"); break;
-        case ROW-7: printw("\t********"); break;
-        case ROW-8: switch(choice){
+        case ROW-9: printw("\tNext Piece:"); break;
+        case ROW-10: printw("\t********"); break;
+        case ROW-11: switch(choice){
                         case 0: printw("\t*   #  *"); return;
                         case 1: printw("\t* #    *"); return;
                         case 2: printw("\t* ##   *"); return;
@@ -81,7 +81,7 @@ void visualizenextpiece(int row, int choice)
                         case 5: printw("\t*      *");return;
                         case 6: printw("\t*  ##  *"); return;
                     }
-        case ROW-9: switch(choice){
+        case ROW-12: switch(choice){
                         case 0: printw("\t* ###  *"); return;
                         case 1: printw("\t* ###  *"); return;
                         case 2: printw("\t*  ##  *"); return;
@@ -90,7 +90,7 @@ void visualizenextpiece(int row, int choice)
                         case 5: printw("\t* #### *"); return;
                         case 6: printw("\t*  ##  *"); return;
                     }
-        case ROW-10:printw("\t********"); break;
+        case ROW-13:printw("\t********"); break;
     }
 }
 
@@ -100,7 +100,7 @@ void visualize(int choice)
         for(int j=0; j<COL; j++){
             printw("%s", playfield[i][j].draw);
         }
-        if(i>ROW-11){
+        if(i>ROW-14){
             visualizenextpiece(i, choice);
         }
     printw("\n");
