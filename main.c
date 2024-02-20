@@ -96,7 +96,7 @@ void visualizenextpiece(int row, int choice)
 
 void visualize(int choice)
 {
-    for(int i=ROW-5; i>1; i--){
+    for(int i=ROW-8; i>-1; i--){
         for(int j=0; j<COL; j++){
             printw("%s", playfield[i][j].draw);
         }
