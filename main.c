@@ -6,7 +6,7 @@
 #include <time.h>
 #include <ncurses.h>
 
-#define ROW 15+4+3
+#define ROW 15+4+3+1
 #define COL 10
 
 bool run = true;
@@ -25,7 +25,7 @@ Box ori;
 
 void setplay()
 {
-    for(int i=3; i<ROW; i++){
+    for(int i=1; i<ROW-3; i++){
         for(int j=0; j<COL; j++){
             playfield[i][j].control = false;
             playfield[i][j].solid = false;
@@ -35,7 +35,7 @@ void setplay()
         }
     }
 
-    for(int i=0; i<3; i++){
+    for(int i=ROW-3; i<ROW; i++){
         for(int j=0; j<COL; j++){
             playfield[i][j].control = false;
             playfield[i][j].solid = false;
@@ -45,12 +45,20 @@ void setplay()
         }
     }
 
-    strcpy(playfield[2][2].draw, " T ");
-    strcpy(playfield[2][3].draw, " E ");
-    strcpy(playfield[2][4].draw, " T ");
-    strcpy(playfield[2][5].draw, " R ");
-    strcpy(playfield[2][6].draw, " I ");
-    strcpy(playfield[2][7].draw, " S ");
+    for(int j=0; j<COL; j++){
+        playfield[0][j].control = false;
+        playfield[0][j].solid = false;
+        playfield[0][j].freeze = true;
+        playfield[0][j].identity = -1;
+        strcpy(playfield[i][j].draw, "   ");
+    }
+
+    strcpy(playfield[0][2].draw, " T ");
+    strcpy(playfield[0][3].draw, " E ");
+    strcpy(playfield[0][4].draw, " T ");
+    strcpy(playfield[0][5].draw, " R ");
+    strcpy(playfield[0][6].draw, " I ");
+    strcpy(playfield[0][7].draw, " S ");
 
     ori.control = false;
     ori.solid = false;
@@ -180,7 +188,7 @@ void moveleft()
 {
     bool adjust = true;
 
-    for(int i=3; i<ROW; i++){
+    for(int i=1; i<ROW-3; i++){
         for(int j=0; j<COL; j++){
             if(playfield[i][j].control){
                 if(j==0){
@@ -194,7 +202,7 @@ void moveleft()
     }
 
     if(adjust){
-        for(int i=3; i<ROW; i++){
+        for(int i=1; i<ROW-3; i++){
             for(int j=1; j<COL; j++){
                 if(playfield[i][j].control){
                     playfield[i][j-1] = playfield[i][j];
@@ -209,7 +217,7 @@ void moveright()
 {
     bool adjust = true;
 
-    for(int i=3; i<ROW; i++){
+    for(int i=1; i<ROW-3; i++){
         for(int j=0; j<COL; j++){
             if(playfield[i][j].control){
                 if(j==COL-1){
@@ -223,7 +231,7 @@ void moveright()
     }
 
     if(adjust){
-        for(int i=3; i<ROW; i++){
+        for(int i=1; i<ROW-3; i++){
             for(int j=COL-2; j>-1; j--){
                 if(playfield[i][j].control){
                     playfield[i][j+1] = playfield[i][j];
@@ -236,7 +244,7 @@ void moveright()
 
 void rotateleft()
 {
-    for(int i=3; i<ROW; i++){
+    for(int i=1; i<ROW-3; i++){
         for(int j=0; j<COL; j++){
             if(playfield[i][j].control){
                 switch(playfield[i][j].identity){
@@ -283,7 +291,7 @@ void rotateleft()
 
 void rotateright()
 {
-    for(int i=3; i<ROW; i++){
+    for(int i=1; i<ROW-3; i++){
         for(int j=0; j<COL; j++){
             if(playfield[i][j].control){
                 switch(playfield[i][j].identity){
@@ -347,7 +355,7 @@ void track()
     bool freezer = false;
     int spawnctr = 0, clearctr = 0;
 
-    for(int i=3; i<ROW; i++){
+    for(int i=1; i<ROW-3; i++){
         for(int j=0; j<COL; j++){
 
             if(playfield[i][j].control)
