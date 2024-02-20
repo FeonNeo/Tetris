@@ -476,7 +476,7 @@ int main()
     do{
         if(spawn){
             nextspawnchoice = rand()%7;
-            spawnpiece(0);
+            spawnpiece(spawnchoice);
             spawnchoice = nextspawnchoice;
             spawn = false;
         }
